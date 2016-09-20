@@ -11,14 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 /* ================== Homepage ================== */
 
-Route::get('/', 'HomeController@index');
-Route::get('/home', 'HomeController@index');
+// Route::get('/', 'HomeController@index');
+// Route::get('/home', 'HomeController@index');
 
 Route::auth();
 
@@ -26,7 +26,8 @@ Route::auth();
 
 Route::get(config('laraadmin.adminRoute'), 'LA\DashboardController@index');
 Route::get(config('laraadmin.adminRoute'). '/dashboard', 'LA\DashboardController@index');
-Route::get('/dashboard', 'LA\DashboardController@index');
+Route::get('/', 'LA\DashboardController@index');
+// Route::get('/dashboard', 'LA\DashboardController@index');
 
 /* ================== Users ================== */
 Route::resource(config('laraadmin.adminRoute') . '/users', 'LA\UsersController');
@@ -57,3 +58,7 @@ Route::get(config('laraadmin.adminRoute') . '/employee_dt_ajax', 'LA\EmployeesCo
 /* ================== Organizations ================== */
 Route::resource(config('laraadmin.adminRoute') . '/organizations', 'LA\OrganizationsController');
 Route::get(config('laraadmin.adminRoute') . '/organization_dt_ajax', 'LA\OrganizationsController@dtajax');
+
+/* ================== Cards ================== */
+Route::resource(config('laraadmin.adminRoute') . '/cards', 'LA\CardsController');
+Route::get(config('laraadmin.adminRoute') . '/card_dt_ajax', 'LA\CardsController@dtajax');
