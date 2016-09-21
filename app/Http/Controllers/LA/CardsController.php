@@ -38,10 +38,18 @@ class CardsController extends Controller
     {
         $module = Module::get('Cards');
         
+        $view=''
+                    ;
+                    
+        
+     
+
+
         return View('la.cards.index', [
             'show_actions' => $this->show_action,
             'listing_cols' => $this->listing_cols,
-            'module' => $module
+            'module' => $module,
+            'view' => $view,
         ]);
     }
 
