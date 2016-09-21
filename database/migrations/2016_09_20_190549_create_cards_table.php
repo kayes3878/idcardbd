@@ -27,7 +27,7 @@ class CreateCardsTable extends Migration
             ["phone",       "Phone",        "Mobile",   false, "",          0,  20,     false],
             ["organization",        "Organization Name",         "Name",     false, "",          3,  256,    false],
             ["designation_class",        "Designation / Class",         "Name",     false, "",          3,  256,    false],
-            ["Group",   "Publisher",    "Dropdown", false, "Student",    0,  0,      false, ["Teacher","Employee","Student"]],
+            ["Group",   "Group",    "Dropdown", false, "Student",    0,  0,      false, ["Teacher","Employee","Student"]],
             ["user_id",          "User name",    "Dropdown", false, 0,   0,  0,      false, "@users"],
         ]);
 		
