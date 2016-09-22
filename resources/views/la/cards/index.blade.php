@@ -76,6 +76,12 @@
                     </div>
 
                     <div class="form-group">
+                    <div class="form-group">
+            		<input type="file" name="image" files="true" id="imgInp" onchange="loadFile(event);">
+            		</div>
+
+                    </div>
+                    <div class="form-group">
                     <label for="Photo" style="display:block;">Profile Image :</label>
                     <input class="form-control" placeholder="Enter Profile Image" data-rule-maxlength="256" name="Photo" type="hidden" value="0"><a class="btn btn-default btn_upload_image" file_type="image" selecter="Photo">Upload 
                     <i class="fa fa-cloud-upload"></i></a>
@@ -103,11 +109,14 @@
                     </select>
                     </div>
                     </div>
-                    <div class="col-md-6" style="border-radius: 10px;border: 2px solid #73AD21;padding: 20px;width: 324px;height: 204px;">
+                    <div class="col-md-6" style="border-radius: 10px;border: 2px solid #73AD21;padding: 10px;width: 324px;height: 204px;">
+                    <div class="col-md-7">
                     <h5> 
                     @{{name}} <br> @{{fathername}} <br> @{{mathername}} <br> @{{phone}} <br> @{{designation_class}}</h5>
-                  
-                    
+                    </div>
+                    <div class="col-md-4">
+                    <img class="preview" id="preview" alt="" style="border-radius: 10px;border: 1px solid #73AD21;padding: 1px;width: 100px;height: 70px;">
+                  	</div>
 
                     </div>
 					{{--
@@ -159,6 +168,21 @@ $(function () {
 	$("#card-add-form").validate({
 		
 	});
+});
+</script>
+<script type="text/javascript">
+	var loadFile = function(event) {
+    oldimg = $('.preview').attr('src');
+    var preview = document.getElementById('preview');
+    preview.src = URL.createObjectURL(event.target.files[0]);
+    newimg = preview.src;
+    if(newimg.indexOf('/null') > -1) {
+        preview.src = oldimg;
+    }
+};
+$('.submit-button').on('click', function(event) {
+  alert('This is a dummy submit button. It does nothing.');
+  event.preventDefault();
 });
 </script>
 @endpush
