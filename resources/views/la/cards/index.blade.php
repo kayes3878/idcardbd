@@ -87,7 +87,9 @@
                     <i class="fa fa-cloud-upload"></i></a>
                     
                     <div class="uploaded_image hide"><img src="">
-                    <i title="Remove Image" class="fa fa-times"></i></div></div>
+                    <i title="Remove Image" class="fa fa-times"></i>
+                    </div>
+                    </div>
 
                     <div class="form-group"><label for="phone">Phone :</label>
                     <input class="form-control" placeholder="Enter Phone" data-rule-maxlength="20" ng-model="phone" name="phone" type="text" value=""></div>
