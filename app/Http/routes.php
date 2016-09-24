@@ -62,3 +62,11 @@ Route::get(config('laraadmin.adminRoute') . '/organization_dt_ajax', 'LA\Organiz
 /* ================== Cards ================== */
 Route::resource(config('laraadmin.adminRoute') . '/cards', 'LA\CardsController');
 Route::get(config('laraadmin.adminRoute') . '/card_dt_ajax', 'LA\CardsController@dtajax');
+
+/* ================== GroupTypes ================== */
+Route::resource(config('laraadmin.adminRoute') . '/grouptypes', 'LA\GroupTypesController');
+Route::get(config('laraadmin.adminRoute') . '/grouptype_dt_ajax', 'LA\GroupTypesController@dtajax');
+
+/* ================== CardGroups ================== */
+Route::resource(config('laraadmin.adminRoute') . '/cardgroups', 'LA\CardGroupsController');
+Route::get(config('laraadmin.adminRoute') . '/cardgroup_dt_ajax', 'LA\CardGroupsController@dtajax');
