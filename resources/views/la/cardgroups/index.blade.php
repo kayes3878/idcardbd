@@ -115,9 +115,9 @@
                     
 				</div>
 				<div class="box-body col-md-12">
-<?php $html = "<div id='card_div' class='col-md-12' style='border-radius: 10px;border: 2px solid #73AD21;padding: 10px;width: 324px;height: 204px; '>
+<?php $html = "<div id='card_div' class='col-md-12' style='border-radius: 10px;border: 1px solid #000000;padding: 10px;width: 324px;height: 204px; '>
 	<div class='col-md-7'>
-	<h5> @{{name}} <br> @{{fathername}} <br> @{{mathername}} <br> @{{phone}} <br> @{{designation_class}}</h5>
+	<h5 style='font-family:courier;'> @ Imrul Kayes <br> @ MD. Abdul Ghani <br> @Mamataz Begum <br> @ +88 01717 745374 <br> </h5>
 	</div>
 	<div class='col-md-4'>
 	<img class='preview' id='preview' alt='' style='border-radius: 10px;border: 1px solid #73AD21;padding: 1px;width: 100px; height: 70px;'>
