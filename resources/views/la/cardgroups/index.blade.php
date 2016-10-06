@@ -66,23 +66,28 @@
                     <option value="3">Student</option></select>
                     </div>
 
-                    <div class="form-group">
-                    <label for="card_front_image_link">Bornt Side :</label>
-                    <input class="form-control" placeholder="Enter Bornt Side" ng-model="card_front_image_link" data-rule-url="true" name="card_front_image_link" type="text" value=""></div>
+                    <!-- <div class="form-group">
+                    <label for="card_front_image_link">Fornt Side :</label>
+                    <input class="form-control" placeholder="Enter Bornt Side" ng-model="card_front_image_link" data-rule-url="true" name="card_front_image_link" type="text" value=""></div> -->
 
  					 <div class="form-group">
-	                    <label for="image" style="display:block;">Profile Image :</label>
+	                    <label for="image" style="display:block;">Fornt Background :</label>
 	            		<input type="file" name="image" files="true" id="imgInp" onchange="loadFile(event);">
                     </div>
+
+                     <div class="form-group">
+	                    <label for="image" style="display:block;">Back End Background :</label>
+	            		<input type="file" name="image_back" files="true" id="imgInp_back" onchange="loadFile(event);">
+                    </div>
                     
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                     <label for="card_Back_image_link">Back Side :</label>
-                    <input class="form-control"  placeholder="Enter Back Side" data-rule-url="true" name="card_Back_image_link" type="text" value=""></div>
+                    <input class="form-control"  placeholder="Enter Back Side" data-rule-url="true" name="card_Back_image_link" type="text" value=""></div> -->
  
 
                     <div class="form-group">
                     <label for="description">Description :</label>
-                    <textarea onchange="cardHtml();"  class="form-control" placeholder="Enter Description" data-rule-maxlength="1000" cols="30" rows="3" name="description"></textarea></div>
+                    <textarea  class="form-control" placeholder="Enter Description" data-rule-maxlength="1000" cols="30" rows="3" name="description"></textarea></div>
 
                     <div class="form-group">
                     <label for="layout">Layout :</label><select class="form-control select2-hidden-accessible" data-placeholder="Enter Layout" rel="select2" name="layout" tabindex="-1" aria-hidden="true">
@@ -110,22 +115,42 @@
                   	</div>
 
                     </div> -->
+                   </div> 
+                   <div class="form-group">
+                   		<div class='col-md-8'><h4>Back Side</h4></div>
+                   </div> 
+                   <div class="form-group" id="card_view_back">
+                   		<div class="col-md-8">
+                   		<h4>Back SIde</h4>
+                   		</div>
                    </div>
 
                     
 				</div>
 				<div class="box-body col-md-12">
-<?php $html = "<div id='card_div' class='col-md-12' style='border-radius: 10px;border: 1px solid #000000;padding: 10px;width: 324px;height: 204px; '>
+<?php $html = "<div id='card_div' class='col-md-12' style='border-radius: 10px;border: 1px solid #000000;padding: 4px;width: 324px;height: 204px; '>
 	<div class='col-md-7'>
-	<h5 style='font-family:courier;'> @ Imrul Kayes <br> @ MD. Abdul Ghani <br> @Mamataz Begum <br> @ +88 01717 745374 <br> </h5>
+	<h5 style='font-family:courier;'> @{{Imrul Kayes}} <br> @{{MD.Abdul Ghani}} <br> @{{Mamataz Begum}} <br> @{{+8801717745374}} <br> </h5>
 	</div>
 	<div class='col-md-4'>
 	<img class='preview' id='preview' alt='' style='border-radius: 10px;border: 1px solid #73AD21;padding: 1px;width: 100px; height: 70px;'>
 	</div>
 </div>"?>
+
+<?php $html_back = "<div id='card_back_div' class='col-md-12' style='border-radius: 10px;border: 1px solid #000000;padding: 4px;width: 324px;height: 204px; '>
+	<div class='col-md-7'>
+	<h5 style='font-family:courier;'> @{{Imrul Kayes}} <br> @{{MD.Abdul Ghani}} <br> @{{Mamataz Begum}} <br> @{{+8801717745374}} <br> </h5>
+	</div>
+	<div class='col-md-4'>
+	</div>
+	</div>"?>
                     <div class="form-group">
                     <label for="view_html">View HTML* :</label>
                     <textarea onchange="cardHtml();"  class="form-control" placeholder="Enter View HTML"  cols="30" rows="10" name="view_html" id="view_html" value="">{{$html}}</textarea></div>
+
+                    <div class="form-group">
+                    <label for="view_html_back">View HTML (Back Part)* :</label>
+                    <textarea onchange="cardHtmlback();"  class="form-control" placeholder="Enter View HTML"  cols="30" rows="10" name="view_html_back" id="view_html_back" value="">{{$html_back}}</textarea></div>
 
                     <!-- <div class="htmlbox" id="htmlbox_view_html" contenteditable=""></div>
                     
@@ -187,30 +212,44 @@ $(function () {
 
 var idcardview=$("#view_html").val();
 $('#card_view').html(idcardview);
-
+ 
 function cardHtml() 
 {
 	var idcardview=$("#view_html").val();
 	alert(idcardview);
 	$('#card_view').html(idcardview);
+	var urlimg =document.getElementById("imgInp").value ;
+	alert(urlimg);
+	document.getElementById("card_div").style.backgroundImage = "url('" + document.getElementById("imgInp").value + "')";
+
+}
+var idcardviewback=$("#view_html_back").val();
+$('#card_view_back').html(idcardviewback);
+
+function cardHtmlback() 
+{
+	var idcardviewback=$("#view_html_back").val();
+	alert(idcardviewback);
+	$('#card_view_back').html(idcardviewback);
 
 }
 </script>
 <script type="text/javascript">
 	var loadFile = function(event) {
-    oldimg = $('.preview').attr('src');
-     
-    preview.src = URL.createObjectURL(event.target.files[0]);
-    newimg = preview.src;
-	var test = URL.createObjectURL(event.target.files[0]);
-	// alert(test);
-	var string = "http://www.planwallpaper.com/static/images/adirondacks-sun-beams-640x300.jpg";
-	// document.getElementByID("card_div").style.backgroundImage = string;
-	document.getElementById("card_div").style.backgroundImage = "url('" + test + "')";
-    if(newimg.indexOf('/null') > -1) {
-        preview.src = oldimg;
-    }
-	};
+			    oldimg = $('.preview').attr('src');
+			     
+			    preview.src = URL.createObjectURL(event.target.files[0]);
+			    newimg = preview.src;
+				var test = URL.createObjectURL(event.target.files[0]);
+				// alert(test);
+				var string = "http://www.planwallpaper.com/static/images/adirondacks-sun-beams-640x300.jpg";
+				// document.getElementByID("card_div").style.backgroundImage = string;
+				document.getElementById("card_div").style.backgroundImage = "url('" + test + "')";
+			    if(newimg.indexOf('/null') > -1) {
+			        preview.src = oldimg;
+		    	}
+			};
+
 $('.submit-button').on('click', function(event) {
   alert('This is a dummy submit button. It does nothing.');
   event.preventDefault();
