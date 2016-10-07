@@ -146,11 +146,11 @@
 	</div>"?>
                     <div class="form-group">
                     <label for="view_html">View HTML* :</label>
-                    <textarea onchange="cardHtml();"  class="form-control" placeholder="Enter View HTML"  cols="30" rows="10" name="view_html" id="view_html" value="">{{$html}}</textarea></div>
+                    <textarea onkeyup="cardHtml();"  class="form-control" placeholder="Enter View HTML"  cols="30" rows="10" name="view_html" id="view_html" value="">{{$html}}</textarea></div>
 
                     <div class="form-group">
                     <label for="view_html_back">View HTML (Back Part)* :</label>
-                    <textarea onchange="cardHtmlback();"  class="form-control" placeholder="Enter View HTML"  cols="30" rows="10" name="view_html_back" id="view_html_back" value="">{{$html_back}}</textarea></div>
+                    <textarea onkeyup="cardHtmlback();"  class="form-control" placeholder="Enter View HTML"  cols="30" rows="10" name="view_html_back" id="view_html_back" value="">{{$html_back}}</textarea></div>
 
                     <!-- <div class="htmlbox" id="htmlbox_view_html" contenteditable=""></div>
                     
@@ -216,10 +216,10 @@ $('#card_view').html(idcardview);
 function cardHtml() 
 {
 	var idcardview=$("#view_html").val();
-	alert(idcardview);
+	// alert(idcardview);
 	$('#card_view').html(idcardview);
 	var urlimg =document.getElementById("imgInp").value ;
-	alert(urlimg);
+	// alert(urlimg);
 	document.getElementById("card_div").style.backgroundImage = "url('" + document.getElementById("imgInp").value + "')";
 
 }
@@ -229,7 +229,7 @@ $('#card_view_back').html(idcardviewback);
 function cardHtmlback() 
 {
 	var idcardviewback=$("#view_html_back").val();
-	alert(idcardviewback);
+	// alert(idcardviewback);
 	$('#card_view_back').html(idcardviewback);
 
 }
