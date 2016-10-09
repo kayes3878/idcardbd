@@ -70,14 +70,14 @@
                     <label for="card_front_image_link">Fornt Side :</label>
                     <input class="form-control" placeholder="Enter Bornt Side" ng-model="card_front_image_link" data-rule-url="true" name="card_front_image_link" type="text" value=""></div> -->
 
- 					 <div class="form-group">
+ 					<div class="form-group">
 	                    <label for="image" style="display:block;">Fornt Background :</label>
 	            		<input type="file" name="image" files="true" id="imgInp" onchange="loadFile(event);">
                     </div>
 
-                     <div class="form-group">
+                    <div class="form-group">
 	                    <label for="image" style="display:block;">Back End Background :</label>
-	            		<input type="file" name="image_back" files="true" id="imgInp_back" onchange="loadFile(event);">
+	            		<input type="file" name="image_back" id="image_back" files="true" id="imgInp_back" onchange="loadFileback(event);">
                     </div>
                     
                     <!-- <div class="form-group">
@@ -121,19 +121,23 @@
                    </div> 
                    <div class="form-group" id="card_view_back">
                    		<div class="col-md-8">
-                   		<h4>Back SIde</h4>
+                   		<h4>Back Side</h4>
                    		</div>
                    </div>
 
                     
 				</div>
 				<div class="box-body col-md-12">
-<?php $html = "<div id='card_div' class='col-md-12' style='border-radius: 10px;border: 1px solid #000000;padding: 4px;width: 324px;height: 204px; '>
+
+<?php
+
+
+ $html = "<div id='card_div' class='col-md-12' style='border-radius: 10px;border: 1px solid #000000;padding: 4px;width: 324px;height: 204px; '>
 	<div class='col-md-7'>
-	<h5 style='font-family:courier;'> @{{Imrul Kayes}} <br> @{{MD.Abdul Ghani}} <br> @{{Mamataz Begum}} <br> @{{+8801717745374}} <br> </h5>
+	<h5 style='position: relative; top: 20px; font-family:courier;'> @{{Imrul Kayes}} <br> @{{MD.Abdul Ghani}} <br> @{{Mamataz Begum}} <br> @{{+8801717745374}} <br> </h5>
 	</div>
-	<div class='col-md-4'>
-	<img class='preview' id='preview' alt='' style='border-radius: 10px;border: 1px solid #73AD21;padding: 1px;width: 100px; height: 70px;'>
+	<div class='col-md-4'  style=' position: relative; top: 30px;'>
+	<img class='preview' id='preview' src='".asset('/la-assets/img/user4-128x128.jpg')."'  alt='' style='border-radius: 10px;border: 1px solid #73AD21;padding: 1px;width: 100px; height: 110px;'>
 	</div>
 </div>"?>
 
@@ -189,6 +193,7 @@
 <script src="{{ asset('la-assets/plugins/datatables/datatables.min.js') }}"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script>
+
 $(function () {
 	$("#example1").DataTable({
 		processing: true,
@@ -248,6 +253,16 @@ function cardHtmlback()
 			    if(newimg.indexOf('/null') > -1) {
 			        preview.src = oldimg;
 		    	}
+			};
+	var loadFileback = function(event) {
+
+				var file = document.getElementById("image_back").files[0];
+				var selectedFile = document.getElementById('image_back').files[0];
+				alert(selectedFile);
+				var backside = URL.createObjectURL(file);
+				// var backside = URL.createObjectURL(event.target.files[0]);
+
+				document.getElementById("card_back_div").style.backgroundImage = "url('" + backside + "')";
 			};
 
 $('.submit-button').on('click', function(event) {
