@@ -91,8 +91,8 @@
 
                     <div class="form-group">
                     <label for="layout">Layout :</label><select class="form-control select2-hidden-accessible" data-placeholder="Enter Layout" rel="select2" name="layout" tabindex="-1" aria-hidden="true">
-                    <option value="landscape">landscape</option>
-                    <option value="portrait" selected="selected">portrait</option></select>
+                    <option value="landscape" selected="selected" >landscape</option>
+                    <option value="portrait" >portrait</option></select>
                     </div>
 
                     <div class="form-group">
@@ -101,9 +101,6 @@
 
 				</div>
 				<div class="box-body col-md-6">
-                    <div class="form-group">
-                    <label for="user_id">User name :</label><select class="form-control select2-hidden-accessible" data-placeholder="Enter User name" rel="select2" name="user_id" tabindex="-1" aria-hidden="true">
-                    <option value="1">kayes</option></select></div>
 
                     <div class="form-group" id="card_view">
                   <!--   <div class="col-md-12" style="border-radius: 10px;border: 2px solid #73AD21;padding: 10px;width: 324px;height: 204px;">
@@ -130,14 +127,14 @@
 				<div class="box-body col-md-12">
 
 <?php
-
+// src='".asset('/la-assets/img/user4-128x128.jpg')."'
 
  $html = "<div id='card_div' class='col-md-12' style='border-radius: 10px;border: 1px solid #000000;padding: 4px;width: 324px;height: 204px; '>
 	<div class='col-md-7'>
 	<h5 style='position: relative; top: 20px; font-family:courier;'> @{{Imrul Kayes}} <br> @{{MD.Abdul Ghani}} <br> @{{Mamataz Begum}} <br> @{{+8801717745374}} <br> </h5>
 	</div>
 	<div class='col-md-4'  style=' position: relative; top: 30px;'>
-	<img class='preview' id='preview' src='".asset('/la-assets/img/user4-128x128.jpg')."'  alt='' style='border-radius: 10px;border: 1px solid #73AD21;padding: 1px;width: 100px; height: 110px;'>
+	<img class='preview' id='preview' src='' alt='' style='border-radius: 10px;border: 1px solid #73AD21;padding: 1px;width: 100px; height: 110px;'>
 	</div>
 </div>"?>
 
@@ -214,19 +211,29 @@ $(function () {
 });
 </script>
 <script>
+// var link = "{{asset('/la-assets/img/user4-128x128.jpg')}}";
+// document.getElementById("preview").attr('src') = link;
 
+// alert(link);
+						 
 var idcardview=$("#view_html").val();
 $('#card_view').html(idcardview);
+preview.src = "{{asset('/image/def_photo.png')}}";
+
  
 function cardHtml() 
 {
+
 	var idcardview=$("#view_html").val();
 	// alert(idcardview);
 	$('#card_view').html(idcardview);
 	var urlimg =document.getElementById("imgInp").value ;
 	// alert(urlimg);
-	document.getElementById("card_div").style.backgroundImage = "url('" + document.getElementById("imgInp").value + "')";
+	document.getElementById("card_div").style.backgroundImage = "url('" + URL.createObjectURL(document.getElementById('imgInp').files[0]); + "')";
 
+	// oldimg = $('.preview').attr('src');
+	preview.src = "{{asset('/image/def_photo.png')}}";
+		 
 }
 var idcardviewback=$("#view_html_back").val();
 $('#card_view_back').html(idcardviewback);
@@ -236,32 +243,21 @@ function cardHtmlback()
 	var idcardviewback=$("#view_html_back").val();
 	// alert(idcardviewback);
 	$('#card_view_back').html(idcardviewback);
+	document.getElementById("card_back_div").style.backgroundImage = "url('" + URL.createObjectURL(document.getElementById('image_back').files[0]); + "')";
 
 }
 </script>
 <script type="text/javascript">
 	var loadFile = function(event) {
-			    oldimg = $('.preview').attr('src');
 			     
-			    preview.src = URL.createObjectURL(event.target.files[0]);
-			    newimg = preview.src;
-				var test = URL.createObjectURL(event.target.files[0]);
-				// alert(test);
-				var string = "http://www.planwallpaper.com/static/images/adirondacks-sun-beams-640x300.jpg";
-				// document.getElementByID("card_div").style.backgroundImage = string;
-				document.getElementById("card_div").style.backgroundImage = "url('" + test + "')";
-			    if(newimg.indexOf('/null') > -1) {
-			        preview.src = oldimg;
-		    	}
+				var forntsite = URL.createObjectURL(event.target.files[0]);
+				document.getElementById("card_div").style.backgroundImage = "url('" + forntsite + "')";
+			   
 			};
 	var loadFileback = function(event) {
 
 				var file = document.getElementById("image_back").files[0];
-				var selectedFile = document.getElementById('image_back').files[0];
-				alert(selectedFile);
 				var backside = URL.createObjectURL(file);
-				// var backside = URL.createObjectURL(event.target.files[0]);
-
 				document.getElementById("card_back_div").style.backgroundImage = "url('" + backside + "')";
 			};
 
