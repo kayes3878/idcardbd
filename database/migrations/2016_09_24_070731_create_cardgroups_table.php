@@ -24,6 +24,7 @@ class CreateCardgroupsTable extends Migration
             ["card_front_image_link",     "Fornt Side",      "URL",      false, "", 0, 0,  false],
             ["card_Back_image_link",     "Back Side",      "URL",      false, "", 0, 0,  false],
             ["view_html",   "View HTML",    "HTML",     false, "", 0, 0, true],
+            ["view_html_back",   "View HTML",    "HTML",     false, "", 0, 0, true],
             ["description", "Description",  "Textarea", false, "",          0,  1000,   false],
             ["layout",   "Layout",    "Dropdown", false, "portrait",    0,  0,      false, ["landscape","portrait"]],
             ["user_id",          "User name",    "Dropdown", false, 0,   0,  0,      false, "@users"],

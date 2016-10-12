@@ -43,6 +43,9 @@
 	</div>
 </div>
 
+
+
+
 <div class="modal fade" id="AddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
@@ -57,13 +60,16 @@
 
 			<div class="modal-body">
 				<div class="box-body col-md-6">
-                    <div class="form-group">
+                 	<div class="form-group">
                     
-                    <label for="group_type_id">Group Name :</label>
+                    <label for="group_type_id"> Group Name :</label>
                     <select class="form-control select2-hidden-accessible" data-placeholder="Enter Group Name" rel="select2" name="group_type_id" tabindex="-1" aria-hidden="true">
-                    <option value="1">Employee</option>
-                    <option value="2">Teacher</option>
-                    <option value="3">Student</option></select>
+							<option value="Select">Select</option>
+                    		@foreach ($grouptypes as $grouptype)
+							<option value="{{ $grouptype->id }}">{{ $grouptype->groupName }}</option>
+                        	@endforeach
+                        	</select>
+                    
                     </div>
 
                     <!-- <div class="form-group">
@@ -76,7 +82,7 @@
                     </div>
 
                     <div class="form-group">
-	                    <label for="image" style="display:block;">Back End Background :</label>
+	                    <label for="image_back" style="display:block;">Back End Background :</label>
 	            		<input type="file" name="image_back" id="image_back" files="true" id="imgInp_back" onchange="loadFileback(event);">
                     </div>
                     
@@ -96,7 +102,8 @@
                     </div>
 
                     <div class="form-group">
-                    <label for="user_id">User name :</label><select class="form-control select2-hidden-accessible" data-placeholder="Enter User name" rel="select2" name="user_id" tabindex="-1" aria-hidden="true">
+                    <label for="user_id">User name :</label>
+                    <select class="form-control select2-hidden-accessible" data-placeholder="Enter User name" rel="select2" name="user_id" tabindex="-1" aria-hidden="true">
                     <option value="1">kayes</option></select></div>
 
 				</div>
@@ -126,6 +133,7 @@
 				</div>
 				<div class="box-body col-md-12">
 
+
 <?php
 // src='".asset('/la-assets/img/user4-128x128.jpg')."'
 
@@ -134,7 +142,7 @@
 	<h5 style='position: relative; top: 20px; font-family:courier;'> @{{Imrul Kayes}} <br> @{{MD.Abdul Ghani}} <br> @{{Mamataz Begum}} <br> @{{+8801717745374}} <br> </h5>
 	</div>
 	<div class='col-md-4'  style=' position: relative; top: 30px;'>
-	<img class='preview' id='preview' src='' alt='' style='border-radius: 10px;border: 1px solid #73AD21;padding: 1px;width: 100px; height: 110px;'>
+	<img class='preview' id='preview' alt='' style='border-radius: 10px;border: 1px solid #73AD21;padding: 1px;width: 100px; height: 110px;'>
 	</div>
 </div>"?>
 
@@ -145,6 +153,7 @@
 	<div class='col-md-4'>
 	</div>
 	</div>"?>
+
                     <div class="form-group">
                     <label for="view_html">View HTML* :</label>
                     <textarea onkeyup="cardHtml();"  class="form-control" placeholder="Enter View HTML"  cols="30" rows="10" name="view_html" id="view_html" value="">{{$html}}</textarea></div>
@@ -252,6 +261,8 @@ function cardHtmlback()
 			     
 				var forntsite = URL.createObjectURL(event.target.files[0]);
 				document.getElementById("card_div").style.backgroundImage = "url('" + forntsite + "')";
+				preview.src = "{{asset('/image/def_photo.png')}}";
+
 			   
 			};
 	var loadFileback = function(event) {
