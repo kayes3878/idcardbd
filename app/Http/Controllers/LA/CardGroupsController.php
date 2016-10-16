@@ -102,7 +102,6 @@ class CardGroupsController extends Controller
                 $folder = storage_path('uploads/cardbackground');
                 $data = $request->input('image');
                 $date_append = date("Y-m-d-His-");
-                // $cardGroupobj->card_front_image_link  = $request->file('image')->getClientOriginalName();
                 $photo_front= $request->file('image')->getClientOriginalName();
                 $cardGroupobj->card_front_image_link  = $date_append.'_front_'.$photo_front;
                 $request->file('image')->move($folder, $cardGroupobj->card_front_image_link);
