@@ -15,7 +15,7 @@ use DB;
 use File;
 use Illuminate\Support\Facades\Input;
 use Validator;
-use Datatables;
+use Datatables; 
 use Collective\Html\FormFacade as Form;
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Helpers\LAHelper;

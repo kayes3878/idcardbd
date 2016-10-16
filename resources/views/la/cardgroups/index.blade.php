@@ -53,7 +53,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">Add CardGroup</h4>
 			</div>
-			{!! Form::open(['action' => 'LA\CardGroupsController@store', 'id' => 'cardgroup-add-form']) !!}
+			{!! Form::open(['action' => 'LA\CardGroupsController@store', 'id' => 'cardgroup-add-form', 'files' => true]) !!}
 			<div class="modal-body" ng-app="">
 				<div class="box-body">
                     <!-- @la_form($module) -->

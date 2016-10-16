@@ -18,6 +18,18 @@ use Dwij\Laraadmin\Models\Module;
 
 use App\CardGroup;
 use App\GroupType;
+use Illuminate\Support\Facades\Input;
+// use Illuminate\Support\Facades\Validator;
+
+
+
+
+ 
+use Illuminate\Support\Facades\Response as FacadeResponse;
+// use File;
+use Dwij\Laraadmin\Helpers\LAHelper;
+use App\file;
+use App\Upload;
 
 class CardGroupsController extends Controller
 {
@@ -75,10 +87,40 @@ class CardGroupsController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+        // $insert_id = Module::insert("CardGroups", $request);
+             
+             $cardGroupobj = new CardGroup();
+             $cardGroupobj->group_type_id = $request->group_type_id;
+             $cardGroupobj->view_html = $request->view_html;
+             $cardGroupobj->view_html_back = $request->view_html_back;
+             $cardGroupobj->description = $request->description;
+             $cardGroupobj->layout = $request->layout;
+             $cardGroupobj->user_id = Auth::user()->id;
+
+       
+          if ($request->hasFile('image')) {
+                $folder = storage_path('uploads/cardbackground');
+                $data = $request->input('image');
+                $date_append = date("Y-m-d-His-");
+                // $cardGroupobj->card_front_image_link  = $request->file('image')->getClientOriginalName();
+                $photo_front= $request->file('image')->getClientOriginalName();
+                $cardGroupobj->card_front_image_link  = $date_append.'_front_'.$photo_front;
+                $request->file('image')->move($folder, $cardGroupobj->card_front_image_link);
+            }if ($request->hasFile('image_back')) {
+                $folder = storage_path('uploads/cardbackground');
+                $data = $request->input('image_back');
+                $date_append = date("Y-m-d-His-");
+                $photo_back=$request->file('image_back')->getClientOriginalName();
+                $cardGroupobj->card_Back_image_link  = $date_append.'_back_'.$photo_back;
+                $request->file('image_back')->move($folder, $cardGroupobj->card_Back_image_link);
+            }
+            // else{
+            //     return response()->json('error: upload file not found.', 400);
+            // }
             
-        $insert_id = Module::insert("CardGroups", $request);
-        
-        return redirect()->route(config('laraadmin.adminRoute') . '.cardgroups.index');
+            $cardGroupobj->save();
+
+            return redirect()->route(config('laraadmin.adminRoute') . '.cardgroups.index');
     }
 
     /**
