@@ -15,18 +15,10 @@ use Validator;
 use Datatables;
 use Collective\Html\FormFacade as Form;
 use Dwij\Laraadmin\Models\Module;
-
 use App\CardGroup;
 use App\GroupType;
 use Illuminate\Support\Facades\Input;
-// use Illuminate\Support\Facades\Validator;
-
-
-
-
- 
 use Illuminate\Support\Facades\Response as FacadeResponse;
-// use File;
 use Dwij\Laraadmin\Helpers\LAHelper;
 use App\file;
 use App\Upload;
