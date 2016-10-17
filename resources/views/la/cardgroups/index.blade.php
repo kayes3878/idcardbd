@@ -101,32 +101,24 @@
                     <option value="portrait" >portrait</option></select>
                     </div>
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                     <label for="user_id">User name :</label>
                     <select class="form-control select2-hidden-accessible" data-placeholder="Enter User name" rel="select2" name="user_id" tabindex="-1" aria-hidden="true">
-                    <option value="1">kayes</option></select></div>
+                    <option value="1">kayes</option></select></div> -->
 
 				</div>
 				<div class="box-body col-md-6">
-
+					<div class="form-group">
+                   		<div class='col-md-8'><h4>Front side</h4></div>
+                   </div> 
                     <div class="form-group" id="card_view">
-                  <!--   <div class="col-md-12" style="border-radius: 10px;border: 2px solid #73AD21;padding: 10px;width: 324px;height: 204px;">
-                    <div class="col-md-7">
-                    <h5> @{{name}} <br> @{{fathername}} <br> @{{mathername}} <br> @{{phone}} <br> @{{designation_class}}</h5>
-                    </div>
-                    <div class="col-md-4">
-                    <img class="preview" id="preview" alt="" style="border-radius: 10px;border: 1px solid #73AD21;padding: 1px;width: 100px; height: 70px;">
-                  	</div>
-
-                    </div> -->
+         
                    </div> 
                    <div class="form-group">
                    		<div class='col-md-8'><h4>Back Side</h4></div>
                    </div> 
                    <div class="form-group" id="card_view_back">
-                   		<div class="col-md-8">
-                   		<h4>Back Side</h4>
-                   		</div>
+                   		
                    </div>
 
                     
