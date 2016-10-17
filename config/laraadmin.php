@@ -6,8 +6,8 @@
 
 return [
     
-    'sitename' => "LaraAdmin 1.0",
-    'sitename2' => ["Lara", "Admin 1.0"],
+    'sitename' => "Id Card ",
+    'sitename2' => ["ID Card", "BD"],
     'sitedesc' => "LaraAdmin is a better and smoother way to manage Projects, Clients, Revenue and all the other aspects of Small & Medium Businesses.",
     
     'adminRoute' => 'admin',

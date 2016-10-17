@@ -16,13 +16,13 @@ use Datatables;
 use Collective\Html\FormFacade as Form;
 use Dwij\Laraadmin\Models\Module;
 
-use App\Card;
+use App\GroupType;
 
-class CardsController extends Controller
+class GroupTypesController extends Controller
 {
     public $show_action = true;
-    public $view_col = 'name';
-    public $listing_cols = ['id', 'name', 'fathername', 'mathername', 'Photo', 'phone', 'organization', 'designation_class', 'Group', 'user_id'];
+    public $view_col = 'groupName';
+    public $listing_cols = ['id', 'groupName', 'description'];
     
     public function __construct() {
         // for authentication (optional)
@@ -30,31 +30,23 @@ class CardsController extends Controller
     }
     
     /**
-     * Display a listing of the Cards.
+     * Display a listing of the GroupTypes.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $module = Module::get('Cards');
+        $module = Module::get('GroupTypes');
         
-        $view=''
-                    ;
-                    
-        
-     
-
-
-        return View('la.cards.index', [
+        return View('la.grouptypes.index', [
             'show_actions' => $this->show_action,
             'listing_cols' => $this->listing_cols,
-            'module' => $module,
-            'view' => $view,
+            'module' => $module
         ]);
     }
 
     /**
-     * Show the form for creating a new card.
+     * Show the form for creating a new grouptype.
      *
      * @return \Illuminate\Http\Response
      */
@@ -64,14 +56,14 @@ class CardsController extends Controller
     }
 
     /**
-     * Store a newly created card in database.
+     * Store a newly created grouptype in database.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $rules = Module::validateRules("Cards", $request);
+        $rules = Module::validateRules("GroupTypes", $request);
         
         $validator = Validator::make($request->all(), $rules);
         
@@ -79,52 +71,52 @@ class CardsController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
             
-        $insert_id = Module::insert("Cards", $request);
+        $insert_id = Module::insert("GroupTypes", $request);
         
-        return redirect()->route(config('laraadmin.adminRoute') . '.cards.index');
+        return redirect()->route(config('laraadmin.adminRoute') . '.grouptypes.index');
     }
 
     /**
-     * Display the specified card.
+     * Display the specified grouptype.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $card = Card::find($id);
-        $module = Module::get('Cards');
-        $module->row = $card;
-        return view('la.cards.show', [
+        $grouptype = GroupType::find($id);
+        $module = Module::get('GroupTypes');
+        $module->row = $grouptype;
+        return view('la.grouptypes.show', [
             'module' => $module,
             'view_col' => $this->view_col,
             'no_header' => true,
             'no_padding' => "no-padding"
-        ])->with('card', $card);
+        ])->with('grouptype', $grouptype);
     }
 
     /**
-     * Show the form for editing the specified card.
+     * Show the form for editing the specified grouptype.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $card = Card::find($id);
+        $grouptype = GroupType::find($id);
         
-        $module = Module::get('Cards');
+        $module = Module::get('GroupTypes');
         
-        $module->row = $card;
+        $module->row = $grouptype;
         
-        return view('la.cards.edit', [
+        return view('la.grouptypes.edit', [
             'module' => $module,
             'view_col' => $this->view_col,
-        ])->with('card', $card);
+        ])->with('grouptype', $grouptype);
     }
 
     /**
-     * Update the specified card in storage.
+     * Update the specified grouptype in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -132,7 +124,7 @@ class CardsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $rules = Module::validateRules("Cards", $request);
+        $rules = Module::validateRules("GroupTypes", $request);
         
         $validator = Validator::make($request->all(), $rules);
         
@@ -140,22 +132,22 @@ class CardsController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();;
         }
         
-        $insert_id = Module::updateRow("Cards", $request, $id);
+        $insert_id = Module::updateRow("GroupTypes", $request, $id);
         
-        return redirect()->route(config('laraadmin.adminRoute') . '.cards.index');
+        return redirect()->route(config('laraadmin.adminRoute') . '.grouptypes.index');
     }
 
     /**
-     * Remove the specified card from storage.
+     * Remove the specified grouptype from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        Card::find($id)->delete();
+        GroupType::find($id)->delete();
         // Redirecting to index() method
-        return redirect()->route(config('laraadmin.adminRoute') . '.cards.index');
+        return redirect()->route(config('laraadmin.adminRoute') . '.grouptypes.index');
     }
     
     /**
@@ -165,7 +157,7 @@ class CardsController extends Controller
      */
     public function dtajax()
     {
-        $users = DB::table('cards')->select($this->listing_cols);
+        $users = DB::table('grouptypes')->select($this->listing_cols);
         $out = Datatables::of($users)->make();
         $data = $out->getData();
         
@@ -173,15 +165,15 @@ class CardsController extends Controller
             for ($j=0; $j < count($this->listing_cols); $j++) { 
                 $col = $this->listing_cols[$j];
                 if($col == $this->view_col) {
-                    $data->data[$i][$j] = '<a href="'.url(config('laraadmin.adminRoute') . '/cards/'.$data->data[$i][0]).'">'.$data->data[$i][$j].'</a>';
+                    $data->data[$i][$j] = '<a href="'.url(config('laraadmin.adminRoute') . '/grouptypes/'.$data->data[$i][0]).'">'.$data->data[$i][$j].'</a>';
                 }
                 // else if($col == "author") {
                 //    $data->data[$i][$j];
                 // }
             }
             if($this->show_action) {
-                $output = '<a href="'.url(config('laraadmin.adminRoute') . '/cards/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
-                $output .= Form::open(['route' => [config('laraadmin.adminRoute') . '.cards.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
+                $output = '<a href="'.url(config('laraadmin.adminRoute') . '/grouptypes/'.$data->data[$i][0].'/edit').'" class="btn btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;"><i class="fa fa-edit"></i></a>';
+                $output .= Form::open(['route' => [config('laraadmin.adminRoute') . '.grouptypes.destroy', $data->data[$i][0]], 'method' => 'delete', 'style'=>'display:inline']);
                 $output .= ' <button class="btn btn-danger btn-xs" type="submit"><i class="fa fa-times"></i></button>';
                 $output .= Form::close();
                 $data->data[$i][] = (string)$output;

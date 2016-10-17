@@ -8,9 +8,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
-use App\Card;
+use App\CardGroup;
 
-class CreateCardsTable extends Migration
+class CreateCardgroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,15 +19,17 @@ class CreateCardsTable extends Migration
      */
     public function up()
     {
-        Module::generate("Cards", 'cards', 'name', [
-            ["name",        "Name",         "Name",     false, "",          3,  256,    true],
-            ["fathername",        "Father Name",         "Name",     false, "",          3,  256,    false],
-            ["mathername",        "Mather Name",         "Name",     false, "",          3,  256,    false],
-            ["Photo", "Profile Image", "Image", false, "",          0,  256,    false],
-            ["phone",       "Phone",        "Mobile",   false, "",          0,  20,     false],
-            ["organization",        "Organization Name",         "Name",     false, "",          3,  256,    false],
-            ["designation_class",        "Designation / Class",         "Name",     false, "",          3,  256,    false],
-            ["Group",   "Group",    "Dropdown", false, "Student",    0,  0,      false, ["Teacher","Employee","Student"]],
+        Module::generate("CardGroups", 'cardgroups', 'group_type_id', [
+            ["group_type_id",   "Group Name",    "Dropdown", false, 0,           0,  0,      false, "@grouptypes"],
+            ["card_front_image_link",        "Fornt Side",         "String",   false, "",  0,  256,    false],
+            ["card_Back_image_link",        "Back Side",         "String",   false, "",  0,  256,    false],
+            
+            // ["card_front_image_link",     "Fornt Side",      "URL",      false, "", 0, 0,  false],
+            // ["card_Back_image_link",     "Back Side",      "URL",      false, "", 0, 0,  false],
+            ["view_html",   "View HTML",    "HTML",     false, "", 0, 0, false],
+            ["view_html_back",   "View HTML Back",    "HTML",     false, "", 0, 0, false],
+            ["description", "Description",  "Textarea", false, "",          0,  1000,   false],
+            ["layout",   "Layout",    "Dropdown", false, "portrait",    0,  0,      false, ["landscape","portrait"]],
             ["user_id",          "User name",    "Dropdown", false, 0,   0,  0,      false, "@users"],
         ]);
 		
@@ -73,8 +75,8 @@ class CreateCardsTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('cards')) {
-            Schema::drop('cards');
+        if (Schema::hasTable('cardgroups')) {
+            Schema::drop('cardgroups');
         }
     }
 }

@@ -44,17 +44,83 @@
 </div>
 
 <div class="modal fade" id="AddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">Add Card</h4>
 			</div>
 			{!! Form::open(['action' => 'LA\CardsController@store', 'id' => 'card-add-form']) !!}
-			<div class="modal-body">
+			<div class="modal-body" ng-app="">
 				<div class="box-body">
-                    @la_form($module)
-					
+                    <!-- @la_form($module) -->
+                    <div class="box-body">
+                    
+			            <!-- {!! $view !!} -->
+
+			            <div class="col-md-6 ">
+        		<div class="form-group" >
+                    <label for="name">Name* :</label>
+                    <input class="form-control" placeholder="Enter Name"  ng-model="name" data-rule-minlength="3" data-rule-maxlength="256" required="1" name="name" type="text" value="" aria-required="true">
+                    
+                    </div>
+                    
+                    <div class="form-group">
+                    <label for="fathername">Father Name :</label>
+                    <input class="form-control" placeholder="Enter Father Name" ng-model="fathername" data-rule-minlength="3" data-rule-maxlength="256" name="fathername" type="text" value="">
+                    </div>
+                    
+                    <div class="form-group">
+                    <label for="mathername">Mather Name :</label>
+                    <input class="form-control" placeholder="Enter Mather Name" ng-model="mathername" data-rule-minlength="3" data-rule-maxlength="256" name="mathername" type="text" value="">
+                    </div>
+
+                    <div class="form-group">
+                    <div class="form-group">
+            		<input type="file" name="image" files="true" id="imgInp" onchange="loadFile(event);">
+            		</div>
+
+                    </div>
+                    <div class="form-group">
+                    <label for="Photo" style="display:block;">Profile Image :</label>
+                    <input class="form-control" placeholder="Enter Profile Image" data-rule-maxlength="256" name="Photo" type="hidden" value="0"><a class="btn btn-default btn_upload_image" file_type="image" selecter="Photo">Upload 
+                    <i class="fa fa-cloud-upload"></i></a>
+                    
+                    <div class="uploaded_image hide"><img src="">
+                    <i title="Remove Image" class="fa fa-times"></i>
+                    </div>
+                    </div>
+
+                    <div class="form-group"><label for="phone">Phone :</label>
+                    <input class="form-control" placeholder="Enter Phone" data-rule-maxlength="20" ng-model="phone" name="phone" type="text" value=""></div>
+
+                    <div class="form-group">
+                    <label for="organization">Organization Name :</label>
+                    <input class="form-control" placeholder="Enter Organization Name" data-rule-minlength="3" data-rule-maxlength="256" name="organization" type="text" value=""></div>
+
+                    <div class="form-group">
+                    <label for="designation_class">Designation / Class :</label>
+                    <input class="form-control" placeholder="Enter Designation / Class" ng-model="designation_class" data-rule-minlength="3" data-rule-maxlength="256" name="designation_class" type="text" value=""></div>
+
+                    <div class="form-group">
+                    <label for="Group">Group :</label>
+                    <select class="form-control select2-hidden-accessible" data-placeholder="Enter Publisher" rel="select2" name="Group" tabindex="-1" aria-hidden="true">
+                    <option value="Teacher">Teacher</option>
+                    <option value="Employee">Employee</option>
+                    <option value="Student" selected="selected">Student</option>
+                    </select>
+                    </div>
+                    </div>
+                    <div class="col-md-6" style="border-radius: 10px;border: 2px solid #73AD21;padding: 10px;width: 324px;height: 204px;">
+                    <div class="col-md-7">
+                    <h5> 
+                    @{{name}} <br> @{{fathername}} <br> @{{mathername}} <br> @{{phone}} <br> @{{designation_class}}</h5>
+                    </div>
+                    <div class="col-md-4">
+                    <img class="preview" id="preview" alt="" style="border-radius: 10px;border: 1px solid #73AD21;padding: 1px;width: 100px;height: 70px;">
+                  	</div>
+
+                    </div>
 					{{--
 					@la_input($module, 'name')
 					@la_input($module, 'fathername')
@@ -85,6 +151,7 @@
 
 @push('scripts')
 <script src="{{ asset('la-assets/plugins/datatables/datatables.min.js') }}"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script>
 $(function () {
 	$("#example1").DataTable({
@@ -103,6 +170,21 @@ $(function () {
 	$("#card-add-form").validate({
 		
 	});
+});
+</script>
+<script type="text/javascript">
+	var loadFile = function(event) {
+    oldimg = $('.preview').attr('src');
+    var preview = document.getElementById('preview');
+    preview.src = URL.createObjectURL(event.target.files[0]);
+    newimg = preview.src;
+    if(newimg.indexOf('/null') > -1) {
+        preview.src = oldimg;
+    }
+};
+$('.submit-button').on('click', function(event) {
+  alert('This is a dummy submit button. It does nothing.');
+  event.preventDefault();
 });
 </script>
 @endpush
