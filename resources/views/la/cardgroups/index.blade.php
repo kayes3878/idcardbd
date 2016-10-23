@@ -49,7 +49,7 @@
 
  $html = "<div id='card_div' class='col-md-12' style='border-radius: 10px;border: 1px solid #000000;padding: 4px;width: 324px;height: 204px; '>
 	<div class='col-md-7'>
-	<h5 style='position: relative; top: 20px; font-family:courier;'> @{{Imrul Kayes}} <br> @{{MD.Abdul Ghani}} <br> @{{Mamataz Begum}} <br> @{{+8801717745374}} <br> </h5>
+	<h5 style='position: relative; top: 20px; font-family:courier;'> @{{name}} <br> @{{name}} <br> @{{mane}} <br> @{{name}} <br> </h5>
 	</div>
 	<div class='col-md-4'  style=' position: relative; top: 30px;'>
 	<img class='preview' id='preview' alt='' style='border-radius: 10px;border: 1px solid #73AD21;padding: 1px;width: 100px; height: 110px;'>
@@ -58,7 +58,7 @@
 
 <?php $html_back = "<div id='card_back_div' class='col-md-12' style='border-radius: 10px;border: 1px solid #000000;padding: 4px;width: 324px;height: 204px; '>
 	<div class='col-md-7'>
-	<h5 style='font-family:courier;'> @{{Imrul Kayes}} <br> @{{MD.Abdul Ghani}} <br> @{{Mamataz Begum}} <br> @{{+8801717745374}} <br> </h5>
+	<h5 style='font-family:courier;'> @{{name}} <br> @{{name}} <br> @{{mane}} <br> @{{name}} <br> </h5>
 	</div>
 	<div class='col-md-4'>
 	</div>
@@ -72,13 +72,14 @@
 				<h4 class="modal-title" id="myModalLabel">Add CardGroup</h4>
 			</div>
 			{!! Form::open(['action' => 'LA\CardGroupsController@store', 'id' => 'cardgroup-add-form', 'files' => true]) !!}
-			<div class="modal-body" ng-app="">
+			 
+			 
+			<div class="modal-body">
 				<div class="box-body">
                     <!-- @la_form($module) -->
+                    
 
-			<div class="modal-body">
-				<!-- <div class="box-body col-md-6"> -->
-				<div class="row">
+			        <div class="row">
                  	<div class="form-group col-md-4">
                     
                     <label for="group_type_id"> Group Name :</label>
@@ -97,14 +98,14 @@
                     </div>
                     <!-- <div class="form-group">
                     <label for="card_front_image_link">Fornt Side :</label>
-                    <input class="form-control" placeholder="Enter Bornt Side" ng-model="card_front_image_link" data-rule-url="true" name="card_front_image_link" type="text" value=""></div> -->
+                    <input class="form-control" placeholder="Enter Bornt Side"  ="card_front_image_link" data-rule-url="true" name="card_front_image_link" type="text" value=""></div> -->
 
  					
-                </div>
-                <div class="row">
+                	</div>
+                <div class="row" >
                 		 <div class="form-group col-md-12">
 	                    <label for="description">Description :</label>
-	                    <textarea  class="form-control" placeholder="Enter Description" data-rule-maxlength="1000" cols="30" rows="3" name="description"></textarea>
+	                    <textarea class="form-control" placeholder="Enter Description" data-rule-maxlength="1000" cols="30" rows="3" name="description"></textarea>
 	                    </div>
                 </div>
                 
@@ -123,6 +124,64 @@
 	                    <label for="image" style="display:block;">Fornt Background :</label>
 	            		<input type="file" name="image" files="true" id="imgInp" onchange="loadFile(event);">
                     </div>
+                </div>
+                <div class="row" >
+                	<!-- <div  class="form-group col-md-2"> -->
+                 <!-- 	<h5> @{{name}} <br> @{{fathername}} <br> @{{mathername}} <br> @{{phone}} <br> @{{designation_class}}</h5>
+ -->				
+
+                	<div  class="form-group col-md-3">
+                		<label alignment="left" for="name">Name :</label> 
+					 	<div class="input-group">
+
+                    	<input class="form-control" placeholder="name"   data-rule-minlength="1" data-rule-maxlength="256" name="name" id="name" type="text" value="@{{name}}"> 
+						  <span class="input-group-btn">
+						    <button class="btn btn-default" onclick="copyfunc('name')" type="button">Copy</button>
+						  </span>
+						</div>	  
+					</div>
+					<div  class="form-group col-md-3">
+                		<label for="fathername">Father Name :</label>
+                		 
+					 	<div class="input-group">
+
+                    	<input class="form-control" placeholder="fathername"  data-rule-minlength="1" data-rule-maxlength="256" name="fathername" id="fathername" type="text" value="@{{fathername}}"> 
+						  <span class="input-group-btn">
+						    <button class="btn btn-default" onclick="copyfunc('fathername')" type="button">Copy</button>
+						  </span>
+						</div>	  
+					</div>
+					<div  class="form-group col-md-3">
+                		<label for="mothername">Mother Name :</label>
+					 	<div class="input-group">
+                    	 <input class="form-control" placeholder="mothername"  data-rule-minlength="1" data-rule-maxlength="256" name="mothername" id="mothername"  type="text" value="@{{mothername}}">
+						  <span class="input-group-btn">
+						    <button class="btn btn-default" onclick="copyfunc('mothername')" type="button">Copy</button>
+						  </span>
+						</div>	  
+					</div>
+					<div  class="form-group col-md-3">
+                		<label for="phone">phone :</label>
+					 	<div class="input-group">
+                    	<input class="form-control" placeholder="phone" data-rule-minlength="1" data-rule-maxlength="256" name="phone" id="phone" type="text" value="@{{phone}}">
+						  <span class="input-group-btn">
+						    <button class="btn btn-default" onclick="copyfunc('phone')" type="button">Copy</button>
+						  </span>
+						</div>	  
+					</div>
+					<div  class="form-group col-md-3">
+                		<label for="designation_class">Designation :</label>
+                		 
+					 	<div class="input-group">
+                    	  <input class="form-control" placeholder="designation"  data-rule-minlength="1" data-rule-maxlength="256" name="designation_class" id="designation_class" type="text" value="@{{designation_class}}">
+						  <span class="input-group-btn">
+						    <button class="btn btn-default" onclick="copyfunc('designation_class')" type="button">Copy</button>
+						  </span>
+						</div>	  
+					</div>
+                	  
+                	  
+                	 
                 </div>
                 <div class="row">
 
@@ -177,19 +236,18 @@
 
                     
 				<!-- </div> -->
-				<div class="box-body col-md-12">
+					<div class="box-body col-md-12">
 
 
 
 
 
 
-                    <!-- <div class="htmlbox" id="htmlbox_view_html" contenteditable=""></div>
-                    
-                    <input class="form-control" onchange="cardHtml();" placeholder="Enter View HTML" required="1"  name="view_html" id="view_html" type="hidden" value="" aria-required="true"></div> -->
- 
-				</div>
-			</div>
+	                    <!-- <div class="htmlbox" id="htmlbox_view_html" contenteditable=""></div>
+	                    
+	                    <input class="form-control" onchange="cardHtml();" placeholder="Enter View HTML" required="1"  name="view_html" id="view_html" type="hidden" value="" aria-required="true"></div> -->
+	 
+					</div>
 					
 					{{--
 					@la_input($module, 'group_type_id')
@@ -201,12 +259,14 @@
 					@la_input($module, 'user_id')
 					--}}
 				</div>
-			</div>
-			<div class="modal-footer">
+
+				<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				{!! Form::submit( 'Submit', ['class'=>'btn btn-success']) !!}
-			</div>
+				</div>
 			{!! Form::close() !!}
+		  </div>
+
 		</div>
 	</div>
 </div>
@@ -240,6 +300,24 @@ $(function () {
 		
 	});
 });
+</script>
+<script type="text/javascript">
+  
+  $.fn.copyme = function() {
+		// alert("aaa");
+          this.select();
+          $(this).focus();
+          document.execCommand("copy");
+          document.getSelection().removeAllRanges();
+
+  };
+
+
+	function copyfunc(value) 
+	{
+	  $("#"+value+"").copyme();
+	}
+	 
 </script>
 <script>
 // var link = "{{asset('/la-assets/img/user4-128x128.jpg')}}";
