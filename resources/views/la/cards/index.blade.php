@@ -54,11 +54,10 @@
 			<div class="modal-body" ng-app="">
 				<div class="box-body">
                     <!-- @la_form($module) -->
-                    <div class="box-body">
                     
 			            <!-- {!! $view !!} -->
 
-			            <div class="col-md-6 ">
+            <div class="col-md-6 ">
         		<div class="form-group" >
                     <label for="name">Name* :</label>
                     <input class="form-control" placeholder="Enter Name"  ng-model="name" data-rule-minlength="3" data-rule-maxlength="256" required="1" name="name" type="text" value="" aria-required="true">
@@ -110,7 +109,8 @@
                     <option value="Student" selected="selected">Student</option>
                     </select>
                     </div>
-                    </div>
+                    
+                </div>
                     <div class="col-md-6" style="border-radius: 10px;border: 2px solid #73AD21;padding: 10px;width: 324px;height: 204px;">
                     <div class="col-md-7">
                     <h5> 
@@ -132,7 +132,6 @@
 					@la_input($module, 'Group')
 					@la_input($module, 'user_id')
 					--}}
-				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
