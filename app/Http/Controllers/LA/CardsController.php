@@ -17,6 +17,9 @@ use Collective\Html\FormFacade as Form;
 use Dwij\Laraadmin\Models\Module;
 
 use App\Card;
+use App\GroupType;
+use App\CardGroup;
+
 
 class CardsController extends Controller
 {
@@ -37,19 +40,17 @@ class CardsController extends Controller
     public function index()
     {
         $module = Module::get('Cards');
-        
-        $view=''
-                    ;
-                    
-        
-     
-
+        // $grouptypes = GroupType::all();
+        $grouptypes = CardGroup::where('user_id', Auth::user()->id)->get();
+        // Auth::user()->id;
+        $view='';
 
         return View('la.cards.index', [
             'show_actions' => $this->show_action,
             'listing_cols' => $this->listing_cols,
             'module' => $module,
             'view' => $view,
+            'grouptypes' => $grouptypes
         ]);
     }
 

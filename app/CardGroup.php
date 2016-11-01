@@ -22,4 +22,9 @@ class CardGroup extends Model
 	protected $guarded = [];
 
 	protected $dates = ['deleted_at'];
+	 
+	public function cardtype()
+	    {
+	        return $this->belongsTo('App\GroupType' , 'group_type_id');
+	    }
 }
