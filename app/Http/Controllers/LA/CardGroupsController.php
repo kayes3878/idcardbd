@@ -220,4 +220,10 @@ class CardGroupsController extends Controller
         $out->setData($data);
         return $out;
     }
+    
+    public function cardviewbytype($typeid)
+    {
+        $cardviewbygrouptype = CardGroup::where('group_type_id' , $typeid)->get();
+        return response()->json($cardviewbygrouptype);
+    }
 }

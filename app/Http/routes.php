@@ -70,3 +70,4 @@ Route::get(config('laraadmin.adminRoute') . '/grouptype_dt_ajax', 'LA\GroupTypes
 /* ================== CardGroups ================== */
 Route::resource(config('laraadmin.adminRoute') . '/cardgroups', 'LA\CardGroupsController');
 Route::get(config('laraadmin.adminRoute') . '/cardgroup_dt_ajax', 'LA\CardGroupsController@dtajax');
+Route::get(config('laraadmin.adminRoute') . '/cardviewbygroup/{typeid?}', 'LA\CardGroupsController@cardviewbytype');
