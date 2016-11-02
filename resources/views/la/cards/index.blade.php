@@ -56,7 +56,24 @@
                     <!-- @la_form($module) -->
                     
 			            <!-- {!! $view !!} -->
-
+            <div class="row">
+                    <div class="form-group col-md-4">
+                    
+                    <label for="group_type_id"> Group Name :</label>
+                    <select  class="form-control select2-hidden-accessible" data-placeholder="Enter Group Name" rel="select2" name="group_type_id" id="group_type_id" tabindex="-1" aria-hidden="true">
+                            <option value="Select">Select</option>
+                            @foreach ($grouptypes as $grouptype)
+                            <option value="{{ $grouptype->cardtype->id }}">{{ $grouptype->cardtype->groupName }}</option>
+                            @endforeach
+                            </select>
+                    
+                    </div>
+            </div>
+            <div class="row">
+                    <div class="form-group col-md-6" id="card_view">
+                
+                   </div> 
+            </div>
             <div class="col-md-6 ">
         		<div class="form-group" >
                     <label for="name">Name* : </label>
@@ -111,16 +128,7 @@
                     </div>
                     
                 </div>
-                    <div class="col-md-6" style="border-radius: 10px;border: 2px solid #73AD21;padding: 10px;width: 324px;height: 204px;">
-                    <div class="col-md-7">
-                    <h5> 
-                    @{{name}} <br> @{{fathername}} <br> @{{mathername}} <br> @{{phone}} <br> @{{designation_class}}</h5>
-                    </div>
-                    <div class="col-md-4">
-                    <img class="preview" id="preview" alt="" style="border-radius: 10px;border: 1px solid #73AD21;padding: 1px;width: 100px;height: 70px;">
-                  	</div>
-
-                    </div>
+                     
 					{{--
 					@la_input($module, 'name')
 					@la_input($module, 'fathername')
@@ -208,29 +216,26 @@ $('.submit-button').on('click', function(event) {
 $(document).ready(function(){
      $("#group_type_id").change(function(){
        
+
          var typeid = $('#group_type_id').val();
-             // $(item_categorie_id).find("option").remove();
-             $.get("{{ url(config('laraadmin.adminRoute') . '/cardviewbygroup') }}" + '/' + typeid, function (data) {
-            console.log(data);
-            $('#card_view').html(data[0].view_html);
-            var link = data[0].card_front_image_link;
-            var link2 ="{{ asset('/image/uploads/cardbackground/') }}"+"/"+ link;
-          
-            document.getElementById("card_div").style.backgroundImage ="url('" + link2 + "')";
-            preview.src = "{{asset('/image/def_photo.png')}}";
+         if (typeid=="Select") {
+                    $('#card_view').empty();
+            }
+        else{
+                 $.get("{{ url(config('laraadmin.adminRoute') . '/cardviewbygroup') }}" + '/' + typeid, function (data) {
+                console.log(data);
+                $('#card_view').html(data[0].view_html);
+                var link = data[0].card_front_image_link;
+                var link2 ="{{ asset('/image/uploads/cardbackground/') }}"+"/"+ link;
+              
+                document.getElementById("card_div").style.backgroundImage ="url('" + link2 + "')";
+                preview.src = "{{asset('/image/def_photo.png')}}";
+                 
+                })
             
-         
- // "url('" + backside + "')";
-
-
-            // "url("+{{asset('/image/"+data[0].card_front_image_link+"')}}+")";
-
-            //  $.each(data, function(key, value) {
-
-            // // $("#item_categorie_id").append("<option value="+value.id+">" + value.category_name +"</option>");
-            // });
-
-            })
+            }
+             
+             
     });
 });
 </script>

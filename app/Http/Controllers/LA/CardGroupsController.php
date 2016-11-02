@@ -28,7 +28,7 @@ class CardGroupsController extends Controller
     public $show_action = true;
     public $view_col = 'group_type_id';
     public $listing_cols = ['id', 'group_type_id', 'card_front_image_link', 'card_Back_image_link',  'description', 'layout', 'user_id' ];
-    hide column 'view_html', 'view_html_back'
+    // hide column 'view_html', 'view_html_back'
     public function __construct() {
         // for authentication (optional)
         $this->middleware('auth');
