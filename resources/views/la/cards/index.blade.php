@@ -53,27 +53,10 @@
 			{!! Form::open(['action' => 'LA\CardsController@store', 'id' => 'card-add-form']) !!}
 			<div class="modal-body" ng-app="">
 				<div class="box-body">
-                <div class="row">
+                    <!-- @la_form($module) -->
+                    
+			            <!-- {!! $view !!} -->
 
-                    <div class="form-group col-md-4">
-                    
-                    <label for="group_type_id"> Group Name :</label>
-                    <select class="form-control select2-hidden-accessible" data-placeholder="Enter Group Name" rel="select2" name="group_type_id" id="group_type_id" tabindex="-1" aria-hidden="true">
-                            <option value="Select">Select</option>
-                            @foreach ($grouptypes as $grouptype)
-                            <option value="{{ $grouptype->cardtype->id }}">{{ $grouptype->cardtype->groupName}}</option>
-                            @endforeach
-                            </select>
-                    
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-6" id="card_view">
-                
-                   </div> 
-                     
-                </div>
-                    
             <div class="col-md-6 ">
         		<div class="form-group" >
                     <label for="name">Name* :</label>
@@ -128,7 +111,7 @@
                     </div>
                     
                 </div>
-<!--                     <div class="col-md-6" style="border-radius: 10px;border: 2px solid #73AD21;padding: 10px;width: 324px;height: 204px;">
+                    <div class="col-md-6" style="border-radius: 10px;border: 2px solid #73AD21;padding: 10px;width: 324px;height: 204px;">
                     <div class="col-md-7">
                     <h5> 
                     @{{name}} <br> @{{fathername}} <br> @{{mathername}} <br> @{{phone}} <br> @{{designation_class}}</h5>
@@ -137,7 +120,7 @@
                     <img class="preview" id="preview" alt="" style="border-radius: 10px;border: 1px solid #73AD21;padding: 1px;width: 100px;height: 70px;">
                   	</div>
 
-                    </div> -->
+                    </div>
 					{{--
 					@la_input($module, 'name')
 					@la_input($module, 'fathername')
@@ -203,55 +186,4 @@ $('.submit-button').on('click', function(event) {
   event.preventDefault();
 });
 </script>
-<script type="text/javascript">
-
-// function cardHtml() 
-// {
-
-//     var idcardview=$("#view_html").val();
-//     // alert(idcardview);
-//     $('#card_view').html(idcardview);
-    // var urlimg =document.getElementById("imgInp").value ;
-    // // alert(urlimg);
-    // document.getElementById("card_div").style.backgroundImage = "url('" + URL.createObjectURL(document.getElementById('imgInp').files[0]); + "')";
-
-    // // oldimg = $('.preview').attr('src');
-    // preview.src = "{{asset('/image/def_photo.png')}}";
-         
-// }
-
-$(document).ready(function(){
-     $("#group_type_id").change(function(){
-        alert('kayes');
-         var typeid = $('#group_type_id').val();
-             // $(item_categorie_id).find("option").remove();
-             $.get("{{ url(config('laraadmin.adminRoute') . '/cardviewbygroup') }}" + '/' + typeid, function (data) {
-            console.log(data);
-            $('#card_view').html(data[0].view_html);
-            var link = data[0].card_front_image_link;
-            var link2 = "{{asset('/image/')}}"+"/"+link;
-
-            // alert(link2);
-            document.getElementById("card_div").style.backgroundImage = "url('"+link2+"')";
-
-            preview.src = "{{asset('/image/def_photo.png')}}";
-            // card_div.src = "{{asset('/image/"+data[0].card_front_image_link+"')}}";
-            // var link2 = "{{asset('/image/"link"')}}";
-            alert(link2);
-
- // "url('" + backside + "')";
-
-
-            // "url("+{{asset('/image/"+data[0].card_front_image_link+"')}}+")";
-
-            //  $.each(data, function(key, value) {
-
-            // // $("#item_categorie_id").append("<option value="+value.id+">" + value.category_name +"</option>");
-            // });
-
-            })
-    });
-});
-</script>
-
 @endpush
