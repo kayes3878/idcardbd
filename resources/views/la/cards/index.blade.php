@@ -59,7 +59,7 @@
 
             <div class="col-md-6 ">
         		<div class="form-group" >
-                    <label for="name">Name* :</label>
+                    <label for="name">Name* : </label>
                     <input class="form-control" placeholder="Enter Name"  ng-model="name" data-rule-minlength="3" data-rule-maxlength="256" required="1" name="name" type="text" value="" aria-required="true">
                     
                     </div>
@@ -181,9 +181,59 @@ $(function () {
         preview.src = oldimg;
     }
 };
+
 $('.submit-button').on('click', function(event) {
   alert('This is a dummy submit button. It does nothing.');
   event.preventDefault();
 });
 </script>
+ 
+<script type="text/javascript">
+
+// function cardHtml() 
+// {
+
+//     var idcardview=$("#view_html").val();
+//     // alert(idcardview);
+//     $('#card_view').html(idcardview);
+    // var urlimg =document.getElementById("imgInp").value ;
+    // // alert(urlimg);
+    // document.getElementById("card_div").style.backgroundImage = "url('" + URL.createObjectURL(document.getElementById('imgInp').files[0]); + "')";
+
+    // // oldimg = $('.preview').attr('src');
+    // preview.src = "{{asset('/image/def_photo.png')}}";
+         
+// }
+
+$(document).ready(function(){
+     $("#group_type_id").change(function(){
+       
+         var typeid = $('#group_type_id').val();
+             // $(item_categorie_id).find("option").remove();
+             $.get("{{ url(config('laraadmin.adminRoute') . '/cardviewbygroup') }}" + '/' + typeid, function (data) {
+            console.log(data);
+            $('#card_view').html(data[0].view_html);
+            var link = data[0].card_front_image_link;
+            var link2 ="{{ asset('/image/uploads/cardbackground/') }}"+"/"+ link;
+          
+            document.getElementById("card_div").style.backgroundImage ="url('" + link2 + "')";
+            preview.src = "{{asset('/image/def_photo.png')}}";
+            
+         
+ // "url('" + backside + "')";
+
+
+            // "url("+{{asset('/image/"+data[0].card_front_image_link+"')}}+")";
+
+            //  $.each(data, function(key, value) {
+
+            // // $("#item_categorie_id").append("<option value="+value.id+">" + value.category_name +"</option>");
+            // });
+
+            })
+    });
+});
+</script>
+
+ 
 @endpush
