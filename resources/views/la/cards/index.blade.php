@@ -76,7 +76,7 @@
                     
             <div class="col-md-6 ">
         		<div class="form-group" >
-                    <label for="name">Name* :</label>
+                    <label for="name">Name* : </label>
                     <input class="form-control" placeholder="Enter Name"  ng-model="name" data-rule-minlength="3" data-rule-maxlength="256" required="1" name="name" type="text" value="" aria-required="true">
                     
                     </div>
@@ -198,6 +198,7 @@ $(function () {
         preview.src = oldimg;
     }
 };
+
 $('.submit-button').on('click', function(event) {
   alert('This is a dummy submit button. It does nothing.');
   event.preventDefault();
@@ -222,23 +223,19 @@ $('.submit-button').on('click', function(event) {
 
 $(document).ready(function(){
      $("#group_type_id").change(function(){
-        alert('kayes');
+       
          var typeid = $('#group_type_id').val();
              // $(item_categorie_id).find("option").remove();
              $.get("{{ url(config('laraadmin.adminRoute') . '/cardviewbygroup') }}" + '/' + typeid, function (data) {
             console.log(data);
             $('#card_view').html(data[0].view_html);
             var link = data[0].card_front_image_link;
-            var link2 = "{{asset('/image/')}}"+"/"+link;
-
-            // alert(link2);
-            document.getElementById("card_div").style.backgroundImage = "url('"+link2+"')";
-
+            var link2 ="{{ asset('/image/uploads/cardbackground/') }}"+"/"+ link;
+          
+            document.getElementById("card_div").style.backgroundImage ="url('" + link2 + "')";
             preview.src = "{{asset('/image/def_photo.png')}}";
-            // card_div.src = "{{asset('/image/"+data[0].card_front_image_link+"')}}";
-            // var link2 = "{{asset('/image/"link"')}}";
-            alert(link2);
-
+            
+         
  // "url('" + backside + "')";
 
 

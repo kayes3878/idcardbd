@@ -50,7 +50,7 @@ class CardsController extends Controller
             'listing_cols' => $this->listing_cols,
             'module' => $module,
             'view' => $view,
-            'grouptypes' => $grouptypes
+            'grouptypes' => $grouptypes,
         ]);
     }
 
