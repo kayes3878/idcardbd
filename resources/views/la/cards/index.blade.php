@@ -56,7 +56,7 @@
                     <!-- @la_form($module) -->
                     
 			            <!-- {!! $view !!} -->
-            <div class="row">
+                <div class="row">
                     <div class="form-group col-md-4">
                     
                     <label for="group_type_id"> Group Name :</label>
@@ -68,55 +68,68 @@
                             </select>
                     
                     </div>
+                    <div class="form-group col-md-3">
+                    <label for="group_type_id"> Photo Picker :</label>
+                    <input type="file"  name="image" files="true" id="imgInp" onchange="loadFile(event);">
+                    </div>
             </div>
-            <div class="row">
-                    <div class="form-group col-md-6" id="card_view">
-                
-                   </div> 
-            </div>
-            <div class="col-md-6 ">
-        		<div class="form-group" >
-                    <label for="name">Name* : </label>
-                    <input class="form-control" placeholder="Enter Name"  ng-model="name" data-rule-minlength="3" data-rule-maxlength="256" required="1" name="name" type="text" value="" aria-required="true">
+            <div class="row-fluid">
+                <div class="form-group row col-md-4">
+                    <div class="form-group" >
+                    <label id="testlable"  for="name">Name* : </label>
+                    <input onkeyup="hello()" class="form-control" placeholder="Enter Name"  ng-model="name" data-rule-minlength="3" data-rule-maxlength="256" required="1" name="name" id="name" type="text" value="" aria-required="true">
                     
                     </div>
-                    
                     <div class="form-group">
                     <label for="fathername">Father Name :</label>
                     <input class="form-control" placeholder="Enter Father Name" ng-model="fathername" data-rule-minlength="3" data-rule-maxlength="256" name="fathername" type="text" value="">
                     </div>
-                    
-                    <div class="form-group">
+                     <div class="form-group">
                     <label for="mathername">Mather Name :</label>
                     <input class="form-control" placeholder="Enter Mather Name" ng-model="mathername" data-rule-minlength="3" data-rule-maxlength="256" name="mathername" type="text" value="">
                     </div>
+                </div>  
 
-                    <div class="form-group">
-                    <div class="form-group">
-            		<input type="file" name="image" files="true" id="imgInp" onchange="loadFile(event);">
-            		</div>
 
+                <div class="form-group col-md-5" id="card_view">
+                
+                </div> 
+                
+            </div>
+            <dir class="row">
+                <div class="form-group row col-md-4">
+
+                    <div class="form-group "><label for="phone">Phone :</label>
+                    <input class="form-control" placeholder="Enter Phone" data-rule-maxlength="20" ng-model="phone" name="phone" type="text" value="">
                     </div>
-                    <div class="form-group">
-                    <label for="Photo" style="display:block;">Profile Image :</label>
-                    <input class="form-control" placeholder="Enter Profile Image" data-rule-maxlength="256" name="Photo" type="hidden" value="0"><a class="btn btn-default btn_upload_image" file_type="image" selecter="Photo">Upload 
-                    <i class="fa fa-cloud-upload"></i></a>
-                    
-                    <div class="uploaded_image hide"><img src="">
-                    <i title="Remove Image" class="fa fa-times"></i>
-                    </div>
-                    </div>
-
-                    <div class="form-group"><label for="phone">Phone :</label>
-                    <input class="form-control" placeholder="Enter Phone" data-rule-maxlength="20" ng-model="phone" name="phone" type="text" value=""></div>
-
-                    <div class="form-group">
+                    <div class="form-group ">
                     <label for="organization">Organization Name :</label>
-                    <input class="form-control" placeholder="Enter Organization Name" data-rule-minlength="3" data-rule-maxlength="256" name="organization" type="text" value=""></div>
+                    <input class="form-control" placeholder="Enter Organization Name" data-rule-minlength="3" data-rule-maxlength="256" name="organization" type="text" value="">
+                    </div>
+                    <div class="form-group ">
 
-                    <div class="form-group">
                     <label for="designation_class">Designation / Class :</label>
-                    <input class="form-control" placeholder="Enter Designation / Class" ng-model="designation_class" data-rule-minlength="3" data-rule-maxlength="256" name="designation_class" type="text" value=""></div>
+                    <input class="form-control" placeholder="Enter Designation / Class" ng-model="designation_class" data-rule-minlength="4" data-rule-maxlength="256" name="designation_class" type="text" value="">
+                    </div>
+                </div>
+            </dir>
+            <div class="col-md-6">
+        		  
+                   <!--  <div class="form-group">
+                        <label for="Photo" style="display:block;">Profile Image :</label>
+                        <input class="form-control" placeholder="Enter Profile Image" data-rule-maxlength="256" name="Photo" type="hidden" value="0"><a class="btn btn-default btn_upload_image" file_type="image" selecter="Photo">Upload 
+                        <i class="fa fa-cloud-upload"></i></a>
+                        
+                        <div class="uploaded_image hide"><img src="">
+                        <i title="Remove Image" class="fa fa-times"></i>
+                        </div>
+                    </div> -->
+
+                   
+                    
+
+                <!--     <div class="form-group">
+                    
 
                     <div class="form-group">
                     <label for="Group">Group :</label>
@@ -127,7 +140,7 @@
                     </select>
                     </div>
                     
-                </div>
+                    </div> -->
                      
 					{{--
 					@la_input($module, 'name')
@@ -194,7 +207,15 @@ $('.submit-button').on('click', function(event) {
   alert('This is a dummy submit button. It does nothing.');
   event.preventDefault();
 });
-</script>
+var hello = function() {
+    document.getElementById('testlable').innerHTML = $('#name').val();;
+    // var typeid = ;
+    // $('#testlable').text() = "kayess";
+    // alert(typeid)
+
+
+    }
+ </script>
  
 <script type="text/javascript">
 
